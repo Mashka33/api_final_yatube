@@ -7,7 +7,7 @@ from rest_framework.permissions import (IsAuthenticated,
 from .permissions import IsAuthor
 from .serializers import (CommentSerializer, FollowSerializer,
                           GroupSerializer, PostSerializer)
-from posts.models import Group, Post, User
+from posts.models import Group, Post
 
 
 class PostViewSet(viewsets.ModelViewSet):
@@ -39,8 +39,8 @@ class CommentViewSet(viewsets.ModelViewSet):
         return self.get_post().comments.all()
 
 
-class FollowViewSet(
-    mixins.CreateModelMixin, mixins.ListModelMixin, viewsets.GenericViewSet):
+class FollowViewSet(mixins.CreateModelMixin, mixins.ListModelMixin,
+                    viewsets.GenericViewSet):
     """Вьюсет для создания и получения информации о подписках на авторов."""
     serializer_class = FollowSerializer
     permission_classes = [IsAuthenticated]
