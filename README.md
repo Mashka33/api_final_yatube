@@ -18,18 +18,15 @@
 #### Установить виртуальное окружение
 
 ```
-python3 -m venv env
+python -m venv venv
+
+# Активировать виртуальное окружение
 
 # для Linux
 source env/bin/activate
 
 # для Windows
-env\Scripts\activate
-# в случае с терминалом bash эта команда может не сработать, тогда следует 
-перейти в папку Scripts командой
-cd env/Scripts/
-# и активировать виртуальное окружение, поставив впереди точку:
-. activate
+source venv\Scripts\activate
 
 # деактивировать виртуальное окружение можно командой
 deactivate
@@ -38,12 +35,12 @@ deactivate
 #### Установить зависимости
 
 ```
-python3 -m pip install --upgrade pip
+python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 #### Выполнить миграции:
 
-`python3 manage.py migrate`
+`python manage.py migrate`
 
 #### Создать суперпользователя django:
 
@@ -55,4 +52,29 @@ pip install -r requirements.txt
 
 Выйти из проекта: Ctrl + C.
 
+### Документация в формате Redoc и пример запроса к API Yatube:
 
+http://127.0.0.1:8000/redoc/
+
+#### *POST-запрос на публикацию записи*
+
+```
+{
+    "text": "Текст поста",
+    "image": "картинка",
+    "group": 1
+}
+```
+
+### *Ответ API в случае успешной публикации записи*
+
+```
+{
+    "id": 1,
+    "author": "Я",
+    "text": "Текст поста",
+    "pub_date": "2019-08-24T14:15:22Z",
+    "image": "картинка",
+    "group": 1
+}
+```
