@@ -29,6 +29,11 @@ class Post(models.Model):
         related_name='posts', blank=True, null=True
     )
 
+    class Meta:
+        ordering = ('pub_date',)
+        verbose_name = 'Статья'
+        verbose_name_plural = 'Статьи'
+
     def __str__(self):
         return self.text[:30]
 
